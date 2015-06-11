@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+    android:id="@+id/m_tv"
+    android:text="TASK1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/holo_blue_light"/>
+
+    <ProgressBar
+        android:id="@+id/m_pb1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <TextView
+    android:id="@+id/m_tv2"
+    android:text="TASK2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:textColor="@android:color/holo_blue_light"/>
+
+    <ProgressBar
+        android:id="@+id/m_pb2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <TextView
+        android:id="@+id/m_tv3"
+        android:text="TASK3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/holo_blue_light"/>
+
+    <ProgressBar
+        android:id="@+id/m_pb3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="0"
+        android:max="100"
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <Button
+            android:id="@+id/btn_shutdown_thread_pool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shutdoown"/>
+
+        <Button
+            android:id="@+id/btn_shutdown_now_thread_pool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShutdoownNow"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_add_download_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AddDownloadTask"/>
+
+        <Button
+            android:id="@+id/btn_add_download_task_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AddDownloadTasks"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_test_run_thread_pool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RunTask1"/>
+
+        <Button
+            android:id="@+id/btn_test_pause_thread_pool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PauseTask1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_test_run_thread_pool2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RunTask2"/>
+
+        <Button
+            android:id="@+id/btn_test_pause_thread_pool2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PauseTask2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_test_run_thread_pool3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RunTask3"/>
+
+        <Button
+            android:id="@+id/btn_test_pause_thread_pool3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PauseTask3"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
