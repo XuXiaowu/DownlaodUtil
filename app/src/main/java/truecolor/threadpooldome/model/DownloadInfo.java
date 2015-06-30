@@ -1,6 +1,7 @@
 package truecolor.threadpooldome.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import truecolor.threadpooldome.db.sqlite.Id;
 import truecolor.threadpooldome.db.sqlite.Table;
@@ -23,6 +24,9 @@ public class DownloadInfo implements Serializable{
     private int file_id;
     @Transient
     private DownloadTaskListener downloadTaskListener;
+    private int downloadType;
+    private List<String> urlList;
+    private int sub_download_index;
 
     public DownloadInfo(){}
 
@@ -31,6 +35,15 @@ public class DownloadInfo implements Serializable{
         this.fileName = fileName;
         this.file_id = file_id;
         this.downloadTaskListener = downloadTaskListener;
+    }
+
+    public DownloadInfo(String url, String fileName, int file_id, DownloadTaskListener downloadTaskListener, int downloadType, List<String> urlList){
+        this.url = url;
+        this.fileName = fileName;
+        this.file_id = file_id;
+        this.downloadTaskListener = downloadTaskListener;
+        this.downloadType = downloadType;
+        this.urlList = urlList;
     }
 
     public String getUrl() {
@@ -95,6 +108,30 @@ public class DownloadInfo implements Serializable{
 
     public void setDownloadTaskListener(DownloadTaskListener downloadTaskListener) {
         this.downloadTaskListener = downloadTaskListener;
+    }
+
+    public int getDownloadType() {
+        return downloadType;
+    }
+
+    public void setDownloadType(int downloadType) {
+        this.downloadType = downloadType;
+    }
+
+    public List<String> getUrlList() {
+        return urlList;
+    }
+
+    public void setUrlList(List<String> urlList) {
+        this.urlList = urlList;
+    }
+
+    public int getSub_download_index() {
+        return sub_download_index;
+    }
+
+    public void setSub_download_index(int sub_download_index) {
+        this.sub_download_index = sub_download_index;
     }
 
 }

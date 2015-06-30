@@ -1,7 +1,6 @@
-package truecolor.threadpooldome.test;
+package truecolor.threadpooldome.sample;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,15 +21,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import truecolor.threadpooldome.R;
+import truecolor.threadpooldome.download.BaseActivity;
 import truecolor.threadpooldome.download.Constant;
 import truecolor.threadpooldome.download.DownloadManager;
-import truecolor.threadpooldome.download.DownloadTask;
 import truecolor.threadpooldome.download.DownloadTaskListener;
 import truecolor.threadpooldome.model.DownloadInfo;
 import truecolor.threadpooldome.service.DownloadService;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
     private TextView mTextView;
     private TextView mTextView2;
@@ -58,8 +57,9 @@ public class MainActivity extends ActionBarActivity {
     private DownloadInfo downloadInfo3;
 
 
-    private ExecutorService mThreadPool;
+//    private ExecutorService mThreadPool;
     private String url = "http://www.muzhiwan.com/index.php?action=common&opt=downloadstat&vid=112312";
+    private String url2 = "http://www.muzhiwan.com/index.php?action=common&opt=downloadstat&vid=112707";
     private final String SAVE_PATH = "/sdcard/DownloadDome/";
 
     @Override
@@ -101,11 +101,16 @@ public class MainActivity extends ActionBarActivity {
         mAddDownloadTaskBtn.setOnClickListener(mAddDownloadTaskBtnOnClickListener);
         mAddDownloadTaskListBtn.setOnClickListener(mAddDownloadTaskListBtnOnClickListener);
 
-        mThreadPool = Executors.newFixedThreadPool(1);
+//        mThreadPool = Executors.newFixedThreadPool(1);
 
-        downloadInfo1 = new DownloadInfo(url, "mzw1.apk", 10001, mLoadDataListener);
-        downloadInfo2 = new DownloadInfo(url, "mzw2.apk", 10002, mLoadDataListener2);
-        downloadInfo3 = new DownloadInfo(url, "mzw3.apk", 10003, mLoadDataListener3);
+        downloadInfo1 = new DownloadInfo(url2, "mzw1.apk", 10001, mLoadDataListener);
+        downloadInfo2 = new DownloadInfo(url2, "mzw2.apk", 10002, mLoadDataListener2);
+
+        List<String> urls = new ArrayList();
+        urls.add("http://www.muzhiwan.com/index.php?action=common&opt=downloadstat&vid=112707");
+        urls.add("http://www.muzhiwan.com/index.php?action=common&opt=downloadstat&vid=112707");
+        urls.add("http://www.muzhiwan.com/index.php?action=common&opt=downloadstat&vid=112707");//http://www.muzhiwan.com/index.php?action=common&opt=downloadstat&vid=112493
+        downloadInfo3 = new DownloadInfo(url, "mzw_download_list", 10003, mLoadDataListener3, Constant.DOWNLOAD_TYPE_MULTI, urls);
 
         DownloadService.startService(MainActivity.this);
     }
@@ -226,9 +231,9 @@ public class MainActivity extends ActionBarActivity {
 //        Thread t4 = new MyThread();
 //        Thread t5 = new MyThread();
         //将线程放入池中进行执行
-        mThreadPool.execute(t1);
-        mThreadPool.execute(t2);
-        mThreadPool.execute(t3);
+//        mThreadPool.execute(t1);
+//        mThreadPool.execute(t2);
+//        mThreadPool.execute(t3);
 //        mThreadPool.execute(t4);
 //        mThreadPool.execute(t5);
         //关闭线程池
@@ -375,7 +380,7 @@ public class MainActivity extends ActionBarActivity {
 
                 }
             };
-            DownloadInfo downloadInfo = new DownloadInfo(url, fileName, fileId, downloadTaskListener);
+            DownloadInfo downloadInfo = new DownloadInfo(url2, fileName, fileId, downloadTaskListener);
             DownloadManager.addTask(downloadInfo);
         }
     };
@@ -414,7 +419,7 @@ public class MainActivity extends ActionBarActivity {
             for (int i = 0; i < 10; i++) {
                 String fileName = "mzwFile" + (downloadTaskQueuSize + i + 1) + ".apk";
                 int fileId = 10000 + (downloadTaskQueuSize + i + 1);
-                DownloadInfo downloadInfo = new DownloadInfo(url, fileName, fileId, downloadTaskListener);
+                DownloadInfo downloadInfo = new DownloadInfo(url2, fileName, fileId, downloadTaskListener);
                 downloadInfoList.add(downloadInfo);
             }
             DownloadManager.addTaskList(downloadInfoList);

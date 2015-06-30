@@ -64,7 +64,7 @@
             android:id="@+id/btn_shutdown_thread_pool"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shutdoown"/>
+            android:text="DownloadList"/>
 
         <Button
             android:id="@+id/btn_shutdown_now_thread_pool"
@@ -88,7 +88,7 @@
             android:id="@+id/btn_add_download_task_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AddDownloadTasks"/>
+            android:text="AddTasks"/>
 
     </LinearLayout>
 

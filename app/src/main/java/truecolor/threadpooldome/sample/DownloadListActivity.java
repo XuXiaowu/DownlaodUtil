@@ -1,24 +1,20 @@
-package truecolor.threadpooldome.test;
+package truecolor.threadpooldome.sample;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import truecolor.threadpooldome.R;
+import truecolor.threadpooldome.download.BaseActivity;
 import truecolor.threadpooldome.download.DownloadManager;
-import truecolor.threadpooldome.download.DownloadTask;
 import truecolor.threadpooldome.model.DownloadInfo;
 import truecolor.threadpooldome.model.Status;
 
-public class DownloadListActivity extends ActionBarActivity {
+public class DownloadListActivity extends BaseActivity {
 
     private RecyclerView mRecyclerView;
     private List<DownloadInfo> mDataList;

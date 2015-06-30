@@ -1,4 +1,4 @@
-package truecolor.threadpooldome.test;
+package truecolor.threadpooldome.sample;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Map;
 
 import truecolor.threadpooldome.R;
 import truecolor.threadpooldome.download.DownloadManager;
@@ -108,6 +107,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ViewHolder>{
             DownloadInfo downloadInfo = (DownloadInfo) v.getTag();
             switch (downloadInfo.getStatus()){
                 case 0:
+                    DownloadManager.stopTask(downloadInfo);
                     break;
                 case 1:
                     DownloadManager.stopTask(downloadInfo);

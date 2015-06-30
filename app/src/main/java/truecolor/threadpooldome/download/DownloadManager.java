@@ -1,5 +1,6 @@
 package truecolor.threadpooldome.download;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import truecolor.threadpooldome.model.DownloadInfo;
 import truecolor.threadpooldome.model.Status;
+import truecolor.threadpooldome.model.SubDownloadInfo;
 import truecolor.threadpooldome.service.DownloadService;
 
 /**
@@ -36,16 +38,37 @@ public class DownloadManager {
     }
 
     public static void resumeTask(DownloadInfo downloadInfo){
-//        DownloadInfo resumeDown = mTasks.get(downloadInfo.getFile_id()).getDownloadInfo();
-//        n
         DownloadTask downloadTask = mTasks.get(downloadInfo.getFile_id());
-        downloadTask.resumDownloadTask();
-//        DownloadService.THREAD_POOL.execute(downloadTask);
+        if (downloadTask != null){
+            downloadTask.resumDownloadTask();
+        }else {
+            addTask(downloadInfo);
+        }
     }
 
     public static void stopTask(DownloadInfo downloadInfo){
         DownloadTask downloadTask = mTasks.get(downloadInfo.getFile_id());
-        downloadTask.stopDownloadTask();
+        if(downloadTask == null){
+            downloadInfo.setStatus(Status.PAUSE.ordinal());
+            DownloadTask.updateDownloadInfo(downloadInfo);
+        }else {
+            downloadTask.stopDownloadTask();
+        }
+    }
+
+    public static void stopAllTask(){
+        List<DownloadInfo> downloadInfoList = getDownloadInfos();
+        for (int i = 0; i < downloadInfoList.size(); i++) {
+            DownloadTask downloadTask = mTasks.get(downloadInfoList.get(i).getFile_id());
+            if (downloadTask != null){
+                if (downloadTask.getDownloadInfo().getStatus() == Status.LOADING.ordinal()){
+                    downloadTask.stopDownloadTask();
+                    DownloadInfo downloadInfo = downloadTask.getDownloadInfo();
+                    downloadInfo.setStatus(Status.PAUSE.ordinal());
+                    downloadTask.updateDownloadInfo(downloadInfo);
+                }
+            }
+        }
     }
 
     public static Map<Integer, DownloadTask> getTasks(){
@@ -54,6 +77,21 @@ public class DownloadManager {
 
     public static List<DownloadInfo> getDownloadInfos(){
         List<DownloadInfo> downloadInfos = DownloadService.DOWNLOAD_DB.findAll(DownloadInfo.class);
+        for (int i = 0; i < downloadInfos.size(); i++) {
+            DownloadInfo di = downloadInfos.get(i);
+            if (di.getDownloadType() == Constant.DOWNLOAD_TYPE_MULTI){
+                List<SubDownloadInfo> subList = DownloadService.SUB_DOWNLOAD_DB.findAll(SubDownloadInfo.class);
+                List<String> urlList = new ArrayList<String>();
+                for (int j = 0; j < subList.size(); j++) {
+                    urlList.add(subList.get(i).getUrl());
+                }
+                di.setUrlList(urlList);
+            }
+        }
         return downloadInfos;
+    }
+
+    public static void removeDownloadTask(int fileId){
+        mTasks.remove(fileId);
     }
 }

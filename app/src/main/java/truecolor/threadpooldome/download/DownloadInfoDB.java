@@ -11,7 +11,7 @@ import truecolor.threadpooldome.model.DownloadInfo;
 public class DownloadInfoDB {
 
     public static void addDownloadInfo(Context context, DownloadInfo downloadInfo){
-        FinalDb finalDb = FinalDb.create(context, Constant.DB_NAME, true);
+        FinalDb finalDb = FinalDb.create(context, Constant.DB_DOWNLOAD_INFO_NAME, true);
         finalDb.save(downloadInfo);
     }
 }

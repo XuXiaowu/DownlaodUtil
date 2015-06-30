@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_download_list">DownloadListActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
 
 </resources>
